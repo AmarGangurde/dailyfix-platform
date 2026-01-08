@@ -17,12 +17,15 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - run: aws ecr get-login-password | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+
+      - run: aws ecr get-login-password | docker login --username AWS --password-stdin ${{ secrets.ECR_URI }}
+
 
       - run: |
           docker build -t nginx-demo services/nginx-demo
-          docker tag nginx-demo:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/dailyfix/nginx-demo:latest
-          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/dailyfix/nginx-demo:latest
+          docker tag nginx-demo:latest ${{ secrets.ECR_URI }}/dailyfix/nginx-demo:latest
+          docker push ${{ secrets.ECR_URI }}/dailyfix/nginx-demo:latest
+
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.6

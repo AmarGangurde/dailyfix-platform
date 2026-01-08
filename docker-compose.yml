@@ -1,12 +1,14 @@
 version: "3.8"
+
 services:
+
   nginx-demo:
-    image: ${{ secrets.ECR_URI }}/dailyfix/nginx-demo:latest
+    image: 131881833918.dkr.ecr.ap-south-1.amazonaws.com/dailyfix/nginx-demo:latest
     ports:
       - "8080:80"
-services:
+
   synapse:
-    image: ${{ secrets.ECR_URI }}/dailyfix/synapse:latest
+    image: 131881833918.dkr.ecr.ap-south-1.amazonaws.com/dailyfix/synapse:latest
     restart: unless-stopped
     ports:
       - "8008:8008"

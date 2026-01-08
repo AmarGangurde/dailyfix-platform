@@ -1,0 +1,6 @@
+version: "3.8"
+services:
+  nginx-demo:
+    image: 131881833918.dkr.ecr.ap-south-1.amazonaws.com/dailyfix/nginx-demo:latest
+    ports:
+      - "8080:80"

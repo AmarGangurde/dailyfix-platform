@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
@@ -17,8 +18,14 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - run: aws ecr get-login-password | docker login --username AWS --password-stdin ${{ secrets.ECR_URI }}
+      - name: Login to ECR
+        run: aws ecr get-login-password | docker login --username AWS --password-stdin ${{ secrets.ECR_URI }}
 
-      - run: docker build -t dailyfix-synapse services/matrix-synapse
-      - run: docker tag dailyfix-synapse:latest ${{ secrets.ECR_URI }}/dailyfix-synapse:latest
-      - run: docker push ${{ secrets.ECR_URI }}/dailyfix-synapse:latest
+      - name: Build
+        run: docker build -t dailyfix-synapse ./services/matrix-synapse
+
+      - name: Tag
+        run: docker tag dailyfix-synapse:latest ${{ secrets.ECR_URI }}/dailyfix-synapse:latest
+
+      - name: Push
+        run: docker push ${{ secrets.ECR_URI }}/dailyfix-synapse:latest

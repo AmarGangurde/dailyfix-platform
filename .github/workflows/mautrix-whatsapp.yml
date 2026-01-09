@@ -1,0 +1,25 @@
+name: Build Mautrix WhatsApp
+
+on:
+  push:
+    paths:
+      - "services/mautrix-whatsapp/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - run: aws ecr get-login-password | docker login --username AWS --password-stdin ${{ secrets.ECR_URI }}
+
+      - run: docker build -t dailyfix-mautrix-whatsapp services/mautrix-whatsapp
+      - run: docker tag dailyfix-mautrix-whatsapp:latest ${{ secrets.ECR_URI }}/dailyfix-mautrix-whatsapp:latest
+      - run: docker push ${{ secrets.ECR_URI }}/dailyfix-mautrix-whatsapp:latest

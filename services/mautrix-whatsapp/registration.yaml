@@ -1,0 +1,14 @@
+id: whatsapp
+url: http://localhost:29318
+as_token: ObFJJnbHeVvPJwIgIRHxlISLdApttLkQfBzBfzcGPCJrxPB4qc1KJrhVZHcVMuon
+hs_token: Zd0GmV2mZYGEeV42haB52pBkhXc55ZAbd05pN2meLMJKYQ7H9F8ni6HTB75JP38c
+sender_localpart: UArLTI1SvHaPUx5TZCX55jINrJsnaG9K
+rate_limited: false
+namespaces:
+    users:
+        - regex: ^@whatsappbot:matrix\.wrexer\.com$
+          exclusive: true
+        - regex: ^@whatsapp_.*:matrix\.wrexer\.com$
+          exclusive: true
+de.sorunome.msc2409.push_ephemeral: true
+receive_ephemeral: true

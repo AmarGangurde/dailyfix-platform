@@ -14,3 +14,4 @@ services:
       - "8008:8008"
     volumes:
       - /runtime/matrix-synapse:/data
+      

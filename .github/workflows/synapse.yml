@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - "services/matrix-synapse/**"
-
+#ok
 jobs:
   build:
     runs-on: ubuntu-latest

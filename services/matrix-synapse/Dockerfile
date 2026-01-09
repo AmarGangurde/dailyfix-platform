@@ -1,3 +1,3 @@
 # synapse service Dockerfile
-FROM matrixdotorg/synapse:latest
+FROM matrixdotorg/dailyfix-synapse:latest
 EXPOSE 8008

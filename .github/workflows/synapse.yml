@@ -20,5 +20,5 @@ jobs:
       - run: aws ecr get-login-password | docker login --username AWS --password-stdin ${{ secrets.ECR_URI }}
 
       - run: docker build -t synapse services/matrix-synapse
-      - run: docker tag synapse:latest ${{ secrets.ECR_URI }}/dailyfix-synapse:latest
+      - run: docker tag synapse:latest ${{ secrets.ECR_URI }}/dailyfixsynapse:latest
       - run: docker push ${{ secrets.ECR_URI }}/dailyfix-synapse:latest

@@ -1,10 +1,7 @@
 name: Build Synapse
 
-on:
-  push:
-    paths:
-      - "services/matrix-synapse/**"
-#ok
+on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest

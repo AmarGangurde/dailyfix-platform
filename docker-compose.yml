@@ -8,7 +8,7 @@ services:
       - "8080:80"
 
   synapse:
-    image: 131881833918.dkr.ecr.ap-south-1.amazonaws.com/dailyfix/synapse:latest
+    image: 131881833918.dkr.ecr.ap-south-1.amazonaws.com/dailyfix-synapse:latest
     restart: unless-stopped
     ports:
       - "8008:8008"
